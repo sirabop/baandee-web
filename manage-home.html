@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="th" class="h-full">
+<head>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#003e23">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>จัดการบ้าน - Baan Dee</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Plus Jakarta Sans', 'Prompt', 'sans-serif'] },
+          colors: { brand: { 900: '#1e5638', 800: '#166534', 50: '#f0fdf4' } }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#f7faf7] text-slate-800 font-sans antialiased min-h-screen pb-24">
+  <!-- Top App Bar -->
+  <header class="sticky top-0 z-30 bg-[#f7faf7]/90 backdrop-blur-md px-5 pt-4 pb-3 flex items-center justify-between border-b border-emerald-900/5 max-w-md mx-auto">
+    <div class="flex items-center gap-2.5">
+      <a href="index.html" class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 shadow-sm hover:bg-slate-50 transition">
+        <i class="fa-solid fa-arrow-left text-xs"></i>
+      </a>
+      <div>
+        <h1 class="font-bold text-slate-900 text-base leading-tight">จัดการบ้าน</h1>
+        <div class="text-[11px] text-slate-500">บ้านสุขใจ • กฟภ. / กฟน.</div>
+      </div>
+    </div>
+    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-100 text-emerald-800">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> สถานะปกติ
+    </span>
+  </header>
+
+  <main class="px-5 pt-3 space-y-5 max-w-md mx-auto">
+    <!-- Header Budget Banner -->
+    <div class="bg-gradient-to-r from-brand-900 to-[#14422b] rounded-2xl p-4 text-white flex items-center justify-between shadow-md">
+      <div>
+        <div id="banner-month-label" class="text-xs text-emerald-200">ค่าใช้จ่ายบ้านประจำเดือน ต.ค. 69</div>
+        <div class="text-2xl font-bold mt-0.5">
+          <span id="banner-total-int">฿4,436</span><span id="banner-total-dec" class="text-xs font-normal text-emerald-200">.00</span>
+        </div>
+        <div class="text-[11px] text-emerald-300 mt-1 flex items-center gap-1">
+          <i class="fa-solid fa-circle-check"></i> รวมค่าส่วนกลาง + ค่าไฟรอบล่าสุด
+        </div>
+      </div>
+      <div class="text-right">
+        <span class="text-[11px] bg-white/10 px-2.5 py-1 rounded-md">3 รายการ</span>
+      </div>
+    </div>
+
+    <!-- Maintenance Reminders -->
+    <div>
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+          <i class="fa-regular fa-bell text-brand-900"></i> แจ้งเตือนงานบ้าน
+        </h2>
+        <button id="open-reminder-modal" class="text-xs font-semibold text-brand-900 hover:underline">+ เพิ่มแจ้งเตือน</button>
+      </div>
+      <div id="reminder-list" class="space-y-2.5">
+        <!-- Reminder 1 -->
+        <div class="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-sm flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-city text-sm"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-slate-900">ค่าส่วนกลาง ต.ค - ธ.ค</div>
+              <div class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                <i class="fa-regular fa-calendar text-[10px]"></i> กำหนด: 5 ธ.ค. 2569
+              </div>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <div class="text-xs font-bold text-slate-900">฿3,200</div>
+            <span class="text-[10px] font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">รอชำระ</span>
+          </div>
+        </div>
+
+        <!-- Reminder 2 -->
+        <div class="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-sm flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-trash-can text-sm"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-slate-900">ค่าเก็บขยะ ประจำปี</div>
+              <div class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                <i class="fa-regular fa-calendar text-[10px]"></i> กำหนด: 13 ม.ค. 2570
+              </div>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <div class="text-xs font-bold text-slate-900">฿480</div>
+            <span class="text-[10px] font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">รอชำระ</span>
+          </div>
+        </div>
+
+        <!-- Reminder 3 -->
+        <div class="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-sm flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-fan text-sm"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-slate-900">ล้างแอร์ 3 เครื่อง</div>
+              <div class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                <i class="fa-regular fa-calendar text-[10px]"></i> กำหนด: 23 ต.ค. 2569
+              </div>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <div class="text-xs font-bold text-slate-900">฿1,500</div>
+            <span class="text-[10px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">นัดหมายแล้ว</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Electricity Bar Chart Section -->
+    <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm">
+      <div class="flex items-center justify-between mb-3">
+        <div>
+          <h2 class="text-xs font-bold text-slate-900 flex items-center gap-1">
+            <i class="fa-solid fa-chart-column text-brand-900"></i> สถิติค่าไฟย้อนหลัง
+          </h2>
+          <div class="text-[10px] text-slate-500">แนวโน้มย้อนหลัง 6 เดือน (บาท)</div>
+        </div>
+        <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">
+          ประหยัดลง 14%
+        </span>
+      </div>
+
+      <!-- Fixed CSS Bar Visualizer -->
+      <div class="h-36 flex items-end justify-between gap-2 pt-6 pb-2 px-2 border-b border-slate-100">
+        <div class="flex-1 flex flex-col items-center gap-1">
+          <span class="text-[9px] text-slate-400">1,752</span>
+          <div class="w-full bg-emerald-700/60 rounded-t-md h-[92px]"></div>
+          <span class="text-[10px] text-slate-500 font-medium">พ.ค.</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1">
+          <span class="text-[9px] text-slate-400">1,780</span>
+          <div class="w-full bg-emerald-700/60 rounded-t-md h-[96px]"></div>
+          <span class="text-[10px] text-slate-500 font-medium">มิ.ย.</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1">
+          <span class="text-[9px] text-slate-400">1,671</span>
+          <div class="w-full bg-emerald-700/60 rounded-t-md h-[84px]"></div>
+          <span class="text-[10px] text-slate-500 font-medium">ก.ค.</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1">
+          <span class="text-[9px] text-slate-400">1,723</span>
+          <div class="w-full bg-emerald-700/60 rounded-t-md h-[88px]"></div>
+          <span class="text-[10px] text-slate-500 font-medium">ส.ค.</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1">
+          <span class="text-[9px] text-slate-400">1,438</span>
+          <div class="w-full bg-emerald-700/60 rounded-t-md h-[70px]"></div>
+          <span class="text-[10px] text-slate-500 font-medium">ก.ย.</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1">
+          <span id="chart-latest-val" class="text-[9px] font-bold text-brand-900">1,236</span>
+          <div class="w-full bg-brand-900 rounded-t-md h-[58px] ring-2 ring-emerald-300"></div>
+          <span id="chart-latest-label" class="text-[10px] font-bold text-brand-900">ต.ค. 69</span>
+        </div>
+      </div>
+      <div class="mt-2 text-center text-[11px] text-emerald-800 font-medium">
+        เดือน ต.ค. ใช้ไฟฟ้าต่ำสุดในรอบ 6 เดือน (-14.05%)
+      </div>
+    </div>
+
+    <!-- Vehicle Menu Card -->
+    <a href="vehicle.html" class="block bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex items-center justify-between active:scale-95 transition-transform">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-brand-900">
+          <i class="fa-solid fa-car-side text-lg"></i>
+        </div>
+        <div>
+          <div class="text-sm font-bold text-slate-900">ยานพาหนะ</div>
+          <div class="text-[11px] text-slate-500">ประวัติซ่อมบำรุงและค่าใช้จ่าย</div>
+        </div>
+      </div>
+      <i class="fa-solid fa-chevron-right text-slate-400 text-sm"></i>
+    </a>
+
+    <!-- Monthly Utility Logs List -->
+    <div>
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+          <i class="fa-solid fa-bolt text-brand-900"></i> ค่าไฟฟ้าและบันทึกมิเตอร์
+        </h2>
+        <a href="meter.html" class="text-xs font-semibold px-2.5 py-1 bg-brand-900 text-white rounded-lg shadow-sm hover:bg-brand-800 transition">
+          <i class="fa-solid fa-plus text-[10px]"></i> จดมิเตอร์
+        </a>
+      </div>
+      <div class="space-y-2">
+        <!-- Latest Record (Synced with localStorage) -->
+        <div class="bg-white rounded-xl p-3 border border-slate-200/80 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div id="display-month-badge" class="w-9 h-9 rounded-lg bg-emerald-50 text-brand-900 flex items-center justify-center font-bold text-xs">
+              ต.ค.
+            </div>
+            <div>
+              <div class="text-xs font-bold text-slate-900">
+                <span id="display-units">123 หน่วย</span>
+                <span id="display-meter-reading" class="text-[11px] font-normal text-slate-500">(มิเตอร์ 10,275)</span>
+              </div>
+              <div id="display-date" class="text-[10px] text-emerald-600 font-medium">ชำระแล้ว • 15 ต.ค. 69</div>
+            </div>
+          </div>
+          <div id="display-bill-amount" class="text-xs font-bold text-slate-900">฿1,236.00</div>
+        </div>
+
+        <!-- Previous Record -->
+        <div class="bg-white rounded-xl p-3 border border-slate-200/80 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-slate-50 text-slate-600 flex items-center justify-center font-bold text-xs">
+              ก.ย.
+            </div>
+            <div>
+              <div class="text-xs font-bold text-slate-900">359 หน่วย <span class="text-[11px] font-normal text-slate-500">(มิเตอร์ 10,152)</span></div>
+              <div class="text-[10px] text-emerald-600 font-medium">ชำระแล้ว • 14 ก.ย. 69</div>
+            </div>
+          </div>
+          <div class="text-xs font-bold text-slate-900">฿1,438.17</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal เพิ่มแจ้งเตือนงานบ้าน -->
+  <div id="reminder-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center px-5 bg-slate-900/50 backdrop-blur-xs">
+    <div class="bg-white w-full max-w-xs rounded-2xl p-5 shadow-xl space-y-3">
+      <h3 class="text-sm font-bold text-slate-900">เพิ่มรายการแจ้งเตือนใหม่</h3>
+      <div>
+        <label class="text-[11px] text-slate-500 block mb-1">ชื่องาน / รายการชำระ</label>
+        <input type="text" id="new-rem-title" placeholder="เช่น ค่าน้ำประปา, ล้างแทงก์น้ำ" class="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:border-brand-900">
+      </div>
+      <div class="grid grid-cols-2 gap-2">
+        <div>
+          <label class="text-[11px] text-slate-500 block mb-1">กำหนดวันที่</label>
+          <input type="text" id="new-rem-date" placeholder="เช่น 25 พ.ย. 69" class="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:border-brand-900">
+        </div>
+        <div>
+          <label class="text-[11px] text-slate-500 block mb-1">ยอดเงิน (บาท)</label>
+          <input type="number" id="new-rem-amount" placeholder="0" class="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:border-brand-900">
+        </div>
+      </div>
+      <div class="flex gap-2 pt-2">
+        <button id="cancel-rem-btn" class="flex-1 py-2 text-xs font-semibold text-slate-600 bg-slate-100 rounded-xl">ยกเลิก</button>
+        <button id="save-rem-btn" class="flex-1 py-2 text-xs font-semibold text-white bg-brand-900 rounded-xl">บันทึก</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-6 py-2 flex items-center justify-between max-w-md mx-auto">
+    <a href="index.html" class="flex flex-col items-center gap-1 text-slate-400 font-medium text-[11px] hover:text-slate-600 transition">
+      <i class="fa-solid fa-house text-base"></i>
+      <span>หน้าหลัก</span>
+    </a>
+    <a href="manage-home.html" class="flex flex-col items-center gap-1 text-brand-900 font-semibold text-[11px]">
+      <i class="fa-solid fa-clipboard-check text-base"></i>
+      <span>จัดการบ้าน</span>
+    </a>
+    <a href="vehicle.html" class="flex flex-col items-center gap-1 text-slate-400 font-medium text-[11px] hover:text-slate-600 transition">
+      <i class="fa-solid fa-car text-base"></i>
+      <span>ยานพาหนะ</span>
+    </a>
+    <a href="items.html" class="flex flex-col items-center gap-1 text-slate-400 font-medium text-[11px] hover:text-slate-600 transition">
+      <i class="fa-solid fa-box-open text-base"></i>
+      <span>ของใช้ในบ้าน</span>
+    </a>
+  </nav>
+
+  <!-- Script ซิงก์ข้อมูลจาก localStorage + ระบบเพิ่มแจ้งเตือน -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. ซิงก์ข้อมูลมิเตอร์และค่าไฟล่าสุด
+      const savedMeter = localStorage.getItem('latestMeterData');
+      const savedDate = localStorage.getItem('latestMeterDate');
+      const savedBill = parseFloat(localStorage.getItem('latestBillAmount'));
+
+      if (savedMeter) {
+        const meterNum = parseInt(savedMeter, 10);
+        const prevMeter = 10275; // เลขมิเตอร์เดือนก่อน (ต.ค. 69)
+        const unitsUsed = meterNum >= prevMeter ? (meterNum - prevMeter) : meterNum;
+
+        const unitsEl = document.getElementById('display-units');
+        const readingEl = document.getElementById('display-meter-reading');
+        const dateEl = document.getElementById('display-date');
+        const badgeEl = document.getElementById('display-month-badge');
+
+        if (unitsEl) unitsEl.innerText = `${unitsUsed.toLocaleString()} หน่วย`;
+        if (readingEl) readingEl.innerText = `(มิเตอร์ ${meterNum.toLocaleString()})`;
+        if (dateEl && savedDate) dateEl.innerText = `จดล่าสุด • ${savedDate}`;
+        if (badgeEl) badgeEl.innerText = 'พ.ย.';
+      }
+
+      if (!isNaN(savedBill) && savedBill > 0) {
+        const formattedBill = savedBill.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        const billEl = document.getElementById('display-bill-amount');
+        if (billEl) billEl.innerText = `฿${formattedBill}`;
+
+        // อัปเดตยอดรวมด้านบน (ค่าส่วนกลาง 3,200 + ค่าไฟล่าสุด)
+        const totalHome = 3200 + savedBill;
+        const [intPart, decPart] = totalHome.toFixed(2).split('.');
+        if (document.getElementById('banner-month-label')) document.getElementById('banner-month-label').innerText = 'ค่าใช้จ่ายบ้านประจำเดือน พ.ย. 69';
+        if (document.getElementById('banner-total-int')) document.getElementById('banner-total-int').innerText = `฿${Number(intPart).toLocaleString('en-US')}`;
+        if (document.getElementById('banner-total-dec')) document.getElementById('banner-total-dec').innerText = `.${decPart}`;
+
+        // อัปเดตกราฟแท่งล่าสุด
+        if (document.getElementById('chart-latest-val')) document.getElementById('chart-latest-val').innerText = Math.round(savedBill).toLocaleString('en-US');
+        if (document.getElementById('chart-latest-label')) document.getElementById('chart-latest-label').innerText = 'พ.ย. 69';
+      }
+
+      // 2. ระบบเพิ่มแจ้งเตือนงานบ้าน (บันทึกลง localStorage)
+      const reminderList = document.getElementById('reminder-list');
+      const modal = document.getElementById('reminder-modal');
+      const openBtn = document.getElementById('open-reminder-modal');
+      const cancelBtn = document.getElementById('cancel-rem-btn');
+      const saveBtn = document.getElementById('save-rem-btn');
+
+      const renderCustomReminders = () => {
+        const customList = JSON.parse(localStorage.getItem('customHomeReminders') || '[]');
+        customList.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-sm flex items-center justify-between';
+          card.innerHTML = `
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-50 text-brand-900 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-bell text-sm"></i>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-slate-900">${item.title}</div>
+                <div class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                  <i class="fa-regular fa-calendar text-[10px]"></i> กำหนด: ${item.date || 'ยังไม่ระบุ'}
+                </div>
+              </div>
+            </div>
+            <div class="text-right shrink-0">
+              <div class="text-xs font-bold text-slate-900">฿${Number(item.amount || 0).toLocaleString()}</div>
+              <span class="text-[10px] font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">รอชำระ</span>
+            </div>
+          `;
+          reminderList.appendChild(card);
+        });
+      };
+      renderCustomReminders();
+
+      if (openBtn) openBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+      if (cancelBtn) cancelBtn.addEventListener('click', () => modal.classList.add('hidden'));
+      if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+          const title = document.getElementById('new-rem-title').value.trim();
+          const date = document.getElementById('new-rem-date').value.trim();
+          const amount = document.getElementById('new-rem-amount').value.trim();
+          if (!title) return;
+
+          const customList = JSON.parse(localStorage.getItem('customHomeReminders') || '[]');
+          customList.push({ title, date, amount });
+          localStorage.setItem('customHomeReminders', JSON.stringify(customList));
+          location.reload();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

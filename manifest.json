@@ -1,0 +1,16 @@
+{
+  "name": "Baan Dee Home Care",
+  "short_name": "Baan Dee",
+  "description": "แอปพลิเคชันจัดการบ้านและจดมิเตอร์ค่าไฟ",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f7faf7",
+  "theme_color": "#003e23",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}

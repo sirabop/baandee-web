@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="h-full" lang="th">
+<head>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#003e23">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+    <meta content="mobile_tab" name="shell-type"/>
+    <title>จดมิเตอร์ค่าไฟ - Baan Dee</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-bright": "#f7faf7", "on-secondary-container": "#316e52", "primary": "#003e23", "inverse-primary": "#99d4ad", "tertiary-fixed": "#92f7c3", "tertiary-fixed-dim": "#75daa8", "surface": "#f7faf7", "primary-container": "#1e5638", "secondary-fixed": "#b1f0ce", "on-background": "#181c1b", "inverse-on-surface": "#eef1ee", "outline-variant": "#c0c9c0", "surface-container-high": "#e6e9e6", "on-tertiary": "#ffffff", "on-primary-container": "#90caa3", "on-secondary": "#ffffff", "on-primary": "#ffffff", "error": "#ba1a1a", "error-container": "#ffdad6", "on-surface-variant": "#404942", "tertiary-container": "#00583a", "surface-container-highest": "#e0e3e0", "secondary-container": "#aeeecb", "inverse-surface": "#2d3130", "surface-tint": "#326949", "surface-container-lowest": "#ffffff", "surface-dim": "#d8dbd8", "surface-variant": "#e0e3e0", "surface-container": "#ecefec", "on-secondary-fixed-variant": "#0e5138", "secondary": "#2c694e", "tertiary": "#003e28", "surface-container-low": "#f1f4f1", "on-tertiary-fixed": "#002113", "on-tertiary-container": "#6cd09f", "on-secondary-fixed": "#002114", "on-primary-fixed-variant": "#185033", "outline": "#717972", "primary-fixed-dim": "#99d4ad", "secondary-fixed-dim": "#95d4b3", "on-surface": "#181c1b", "on-error-container": "#93000a", "primary-fixed": "#b5f0c8", "background": "#f7faf7", "on-tertiary-fixed-variant": "#005235", "on-error": "#ffffff", "on-primary-fixed": "#002110" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1.25rem", "space-xs": "0.25rem", "space-xl": "1.75rem", "margin": "1.25rem", "space-sm": "0.5rem", "gutter": "1rem", "space-md": "0.875rem" } } } };
+    </script>
+    <style>
+        @layer base{html,body{width:100%;margin:0;padding:0;background-color:#f7faf7;color:#181c1b;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}.header-safe{top:env(safe-area-inset-top,0px);}}
+        ::-webkit-scrollbar{display:none;}
+        body { min-height: max(884px, 100dvh); }
+        input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type="number"] { -moz-appearance: textfield; }
+        /* ปรับแต่งกรอบวิดีโอของตัวสแกนบาร์โค้ดให้เต็มพื้นที่สวยงาม */
+        #reader video { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 0.75rem; }
+    </style>
+    <!-- เปลี่ยนมาใช้ไลบรารีสแกน Barcode & QR Code -->
+    <script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body class="min-h-full bg-surface font-body-md text-body-md text-on-surface antialiased">
+    
+    <!-- Header -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_2px_12px_rgba(30,86,56,0.04)]">
+        <div class="h-16 px-margin flex items-center justify-between">
+            <a href="manage-home.html" aria-label="Back" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors -ml-2">
+                <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+            </a>
+            <div class="flex flex-col items-center">
+                <span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">จดมิเตอร์ & ค่าไฟ</span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant font-medium">บ้านสุขใจ • กฟภ. / กฟน.</span>
+            </div>
+            <button aria-label="History" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors -mr-2">
+                <span class="material-symbols-outlined text-[24px]">history</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="relative w-full pt-16 pb-28 bg-surface min-h-screen">
+        <div class="flex flex-col w-full pb-8">
+            
+            <!-- Barcode / QR Scan Card -->
+            <section class="px-margin pt-4">
+                <div class="bg-primary-container text-on-primary rounded-xl p-space-lg shadow-[0_8px_24px_rgba(30,86,56,0.12)] relative overflow-hidden">
+                    <div class="absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-tertiary-fixed/15 blur-2xl pointer-events-none"></div>
+                    
+                    <div class="flex items-start justify-between relative z-10">
+                        <div>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-tertiary-fixed/20 text-tertiary-fixed border border-tertiary-fixed/30 mb-2">
+                                <span class="material-symbols-outlined text-[12px]">qr_code_scanner</span> สแกนอัตโนมัติ (แม่นยำ 100%)
+                            </span>
+                            <h2 class="font-headline-sm text-headline-sm font-bold">สแกนบิลค่าไฟ (PEA)</h2>
+                            <p class="font-body-sm text-body-sm text-on-primary-container mt-1 max-w-[220px]">ส่องกล้องไปที่ QR Code หรือบาร์โค้ดบนบิล ระบบจะดึงยอดเงินทันที</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-2xl bg-surface-container-lowest/15 backdrop-blur flex items-center justify-center text-tertiary-fixed shadow-sm">
+                            <span class="material-symbols-outlined text-[24px]">barcode_scanner</span>
+                        </div>
+                    </div>
+                    
+                    <!-- ปุ่มเปิดกล้อง -->
+                    <button id="open-cam-btn" class="w-full bg-surface-container-lowest border-2 border-dashed border-primary text-primary rounded-xl py-4 font-bold flex flex-col items-center justify-center gap-2 mb-2 mt-4 active:scale-95 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">qr_code_scanner</span>
+                        สแกน QR Code / บาร์โค้ดบิลค่าไฟ
+                    </button>
+
+                    <!-- โซนกล้องสแกน (ซ่อนไว้ตอนแรก) -->
+                    <div id="camera-section" class="relative w-full bg-black rounded-xl overflow-hidden hidden mt-4 shadow-lg ring-4 ring-black/10">
+                        <!-- พื้นที่แสดงภาพจาก html5-qrcode -->
+                        <div id="reader" class="w-full min-h-[320px]"></div>
+
+                        <!-- แถบคำแนะนำและปุ่มปิดกล้องด้านล่าง -->
+                        <div class="bg-black/80 px-4 py-3 flex items-center justify-between">
+                            <span class="text-white text-xs">เล็ง <b class="text-green-400">QR Code</b> หรือ <b class="text-green-400">บาร์โค้ด</b> ในกรอบ</span>
+                            <button id="close-cam-btn" class="bg-white/15 text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 active:scale-90">
+                                <span class="material-symbols-outlined text-[16px]">close</span> ปิดกล้อง
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Billing Period Select -->
+            <section class="mt-4 px-margin">
+                <div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_2px_8px_rgba(30,86,56,0.04)] border border-surface-container flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+                        </div>
+                        <div>
+                            <span class="font-label-sm text-label-sm text-on-surface-variant block mb-0.5">รอบบิลประจำเดือน</span>
+                            <span class="font-body-md text-body-md text-on-surface font-bold">พฤศจิกายน 2569</span>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-label-sm">ปัจจุบัน</span>
+                </div>
+            </section>
+
+            <!-- Meter Reading Inputs -->
+            <section class="mt-4 px-margin">
+                <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_2px_8px_rgba(30,86,56,0.04)] border border-surface-container space-y-5">
+                    <!-- Previous Month -->
+                    <div class="flex items-center justify-between pb-4 border-b border-surface-container-high/60">
+                        <div>
+                            <span class="font-label-sm text-label-sm text-on-surface-variant font-medium block mb-0.5">เลขมิเตอร์ครั้งก่อน (ต.ค. 69)</span>
+                            <div class="font-headline-md text-headline-md text-on-surface-variant font-bold">10,275 <span class="font-body-sm text-body-sm font-normal">kWh</span></div>
+                        </div>
+                        <div class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-low text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[14px]">lock</span><span class="font-label-sm text-label-sm">ประวัติ</span>
+                        </div>
+                    </div>
+                    <!-- Current Month -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="font-body-md text-body-md text-on-surface font-bold">เลขมิเตอร์ครั้งนี้</label>
+                            <span class="font-label-sm text-label-sm text-primary font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">bolt</span> กิโลวัตต์-ชั่วโมง</span>
+                        </div>
+                        <div class="relative">
+                            <input type="number" id="meter-value" value="10624" class="w-full font-display-lg-mobile text-display-lg-mobile text-primary bg-secondary-fixed/30 border-2 border-secondary/20 focus:border-primary rounded-xl px-4 py-3 focus:outline-none tracking-wider transition-colors"/>
+                            <span class="absolute right-4 top-1/2 -translate-y-1/2 font-body-md text-body-md text-on-surface-variant font-medium">หน่วย</span>
+                        </div>
+                    </div>
+                    
+                    <!-- ช่องรับยอดเงินค่าไฟ -->
+                    <div class="mt-4 relative">
+                        <label class="block text-body-sm font-medium text-on-surface-variant mb-1">ยอดเงินค่าไฟที่สแกนได้ (บาท)</label>
+                        <input type="number" id="bill-amount" step="0.01" class="w-full h-14 bg-surface-container-highest rounded-xl px-4 text-on-surface outline-none focus:ring-2 focus:ring-primary font-bold text-xl text-red-500" placeholder="0.00">
+                    </div>
+                    
+                    <!-- Calculated Consumption Box -->
+                    <div class="bg-secondary-fixed/20 rounded-xl p-3 border border-secondary-fixed/50 flex items-center justify-between">
+                        <div>
+                            <span class="font-label-sm text-label-sm text-on-surface-variant block mb-0.5">จำนวนหน่วยที่ใช้รอบนี้</span>
+                            <span id="calc-units" class="font-headline-md text-headline-md text-primary font-bold">+349 หน่วย</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Sticky Actions Footer -->
+    <footer class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-8px_24px_rgba(30,86,56,0.04)] border-t border-surface-container/50">
+        <div class="px-margin py-4 flex items-center gap-3 max-w-md mx-auto">
+            <a href="manage-home.html" class="flex-1 py-3.5 rounded-xl bg-surface-container border border-surface-container-highest text-on-surface-variant font-label-md text-label-md font-bold text-center hover:bg-surface-container-high transition-colors">
+                ยกเลิก
+            </a>
+            <button id="save-btn" class="flex-[2] py-3.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold shadow-[0_4px_12px_rgba(0,62,35,0.2)] hover:bg-primary-container hover:shadow-[0_4px_16px_rgba(0,62,35,0.3)] transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">save</span>
+                บันทึกข้อมูล
+            </button>
+        </div>
+    </footer>
+
+    <!-- Success Popup -->
+    <div id="success-popup" class="hidden fixed inset-0 z-[100] flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-surface-variant/60 backdrop-blur-sm" id="popup-backdrop"></div>
+        <div class="relative bg-surface w-full max-w-xs rounded-3xl p-6 shadow-xl flex flex-col items-center text-center">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-[32px] text-primary">check_circle</span>
+            </div>
+            <h3 class="text-title-lg font-bold text-on-surface mb-2">บันทึกสำเร็จ!</h3>
+            <p class="text-body-md text-on-surface-variant mb-6">ข้อมูลมิเตอร์และยอดเงินถูกบันทึกเรียบร้อยแล้ว</p>
+            <button id="close-popup-btn" class="w-full py-3 bg-primary text-on-primary font-bold rounded-xl active:scale-95 transition-transform">
+                ตกลง
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 1. ระบบคำนวณหน่วยอัตโนมัติ
+        const meterValue = document.getElementById('meter-value');
+        const calculateBill = () => {
+            const currentMeter = parseInt(meterValue.value) || 0;
+            const prevMeter = 10275;
+            let units = currentMeter - prevMeter;
+            if (units < 0) units = 0; 
+            if(document.getElementById('calc-units')) document.getElementById('calc-units').innerText = `+${units} หน่วย`;
+        };
+        if (meterValue) meterValue.addEventListener('input', calculateBill);
+
+        // 2. ระบบ Popup และการบันทึกข้อมูลลง Google Sheets
+        const saveBtn = document.getElementById('save-btn');
+        const successPopup = document.getElementById('success-popup');
+        const closePopupBtn = document.getElementById('close-popup-btn');
+
+        if (saveBtn && successPopup) {
+            saveBtn.addEventListener('click', () => successPopup.classList.remove('hidden'));
+        }
+
+        const closeAndSave = () => {
+            const value = meterValue.value;
+            if (value) {
+                const today = new Date();
+                const dateStr = `${today.getDate()} ${today.toLocaleString('th-TH', { month: 'short' })} ${today.getFullYear() + 543}`;
+                
+                localStorage.setItem('latestMeterData', value);
+                localStorage.setItem('latestMeterDate', dateStr);
+
+                const scriptUrl = 'https://script.google.com/macros/s/AKfycbxaDqrGGz00iNpS1CMLwNC8mWMEXMybOsO4ryUh0awm1x0bQYwoIZmAqDRo4A7MhkgSMw/exec';
+                const formData = new URLSearchParams();
+                formData.append('dateStr', dateStr);
+                formData.append('meterValue', value);
+                
+                const amountInput = document.getElementById('bill-amount');
+                formData.append('amount', amountInput ? amountInput.value : '');
+
+                fetch(scriptUrl, { method: 'POST', mode: 'no-cors', body: formData })
+                    .catch(err => console.log('บันทึกชีตไม่สำเร็จ:', err));
+            }
+            successPopup.classList.add('hidden');
+            window.location.href = 'manage-home.html';
+        };
+        if (closePopupBtn) closePopupBtn.addEventListener('click', closeAndSave);
+
+        // 3. ระบบสแกน Barcode และ QR Code บิลค่าไฟ กฟภ.
+        const openCamBtn = document.getElementById('open-cam-btn');
+        const closeCamBtn = document.getElementById('close-cam-btn');
+        const cameraSection = document.getElementById('camera-section');
+        let html5QrCode = null;
+        let isScanning = false;
+
+        // ฟังก์ชันถอดรหัสยอดเงินจาก QR Code (Tag 54) และ Barcode (มาตรฐาน ธปท.)
+        function parsePEABillAmount(text) {
+            const cleanText = text.trim();
+
+            // แบบที่ 1: QR Code มาตรฐาน Thai QR Payment (ขึ้นต้นด้วย 000201)
+            if (cleanText.startsWith('000201')) {
+                let i = 0;
+                while (i < cleanText.length - 4) {
+                    const tag = cleanText.substring(i, i + 2);
+                    const len = parseInt(cleanText.substring(i + 2, i + 4), 10);
+                    if (isNaN(len)) break;
+                    const val = cleanText.substring(i + 4, i + 4 + len);
+                    
+                    // Tag 54 คือยอดเงินที่ต้องชำระ (Transaction Amount)
+                    if (tag === '54') {
+                        const amount = parseFloat(val);
+                        if (!isNaN(amount) && amount > 0) {
+                            return amount.toFixed(2);
+                        }
+                    }
+                    i += 4 + len;
+                }
+            }
+
+            // แบบที่ 2: Barcode มาตรฐาน ธปท. (ขึ้นต้นด้วย | เช่น |TaxID\rRef1\rRef2\rSatang)
+            if (cleanText.startsWith('|')) {
+                const parts = cleanText.split(/[\r\n]+/).filter(p => p.length > 0);
+                if (parts.length >= 4) {
+                    const satang = parseInt(parts[3].replace(/[^0-9]/g, ''), 10);
+                    if (!isNaN(satang) && satang > 0) {
+                        return (satang / 100).toFixed(2);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        // ฟังก์ชันหยุดกล้องอย่างปลอดภัย
+        const stopCamera = async () => {
+            if (html5QrCode && isScanning) {
+                try {
+                    await html5QrCode.stop();
+                    html5QrCode.clear();
+                } catch (err) {
+                    console.log("Stop camera warning:", err);
+                }
+                isScanning = false;
+            }
+            cameraSection.classList.add('hidden');
+            openCamBtn.classList.remove('hidden');
+        };
+
+        closeCamBtn.addEventListener('click', stopCamera);
+
+        // ฟังก์ชันเปิดกล้องเริ่มสแกนอัตโนมัติ
+        openCamBtn.addEventListener('click', async () => {
+            openCamBtn.classList.add('hidden');
+            cameraSection.classList.remove('hidden');
+
+            if (!html5QrCode) {
+                html5QrCode = new Html5Qrcode("reader", {
+                    // รองรับทั้ง QR Code และ Barcode (Code 128) เพื่อความรวดเร็วสูงสุด
+                    formatsToSupport: [
+                        Html5QrcodeSupportedFormats.QR_CODE,
+                        Html5QrcodeSupportedFormats.CODE_128
+                    ],
+                    experimentalFeatures: {
+                        useBarCodeDetectorIfSupported: true
+                    }
+                });
+            }
+
+            try {
+                isScanning = true;
+                await html5QrCode.start(
+                    { facingMode: "environment" },
+                    {
+                        fps: 15,
+                        qrbox: { width: 270, height: 150 } // กรอบสี่เหลี่ยมผืนผ้า สแกนได้ทั้ง QR และบาร์โค้ดแนวนอน
+                    },
+                    async (decodedText) => {
+                        // เมื่อกล้องอ่านรหัสติด ให้หยุดกล้องทันที
+                        await stopCamera();
+
+                        // สั่นเตือนบนมือถือ (ถ้าเครื่องรองรับ)
+                        if (navigator.vibrate) navigator.vibrate(200);
+
+                        // แกะยอดเงินออกจากรหัสที่สแกนได้
+                        const amount = parsePEABillAmount(decodedText);
+
+                        if (amount) {
+                            document.getElementById('bill-amount').value = amount;
+                            alert(`สแกนบิลสำเร็จ! ยอดชำระคือ ${amount} บาท`);
+                        } else {
+                            alert(`สแกนติดแล้ว แต่ไม่พบยอดเงินในรหัสนี้ครับ (ข้อมูลดิบ: ${decodedText})`);
+                        }
+                    },
+                    (errorMessage) => {
+                        // ระหว่างกำลังเล็งหากรอบ ปล่อยผ่านเงียบๆ
+                    }
+                );
+            } catch (err) {
+                isScanning = false;
+                cameraSection.classList.add('hidden');
+                openCamBtn.classList.remove('hidden');
+                alert("ไม่สามารถเปิดกล้องได้ กรุณาตรวจสอบสิทธิ์การใช้งานกล้องครับ");
+            }
+        });
+    </script>
+</body>
+</html>

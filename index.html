@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="h-full" lang="th">
+<head>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#003e23">
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+  <meta content="mobile_tab" name="shell-type"/>
+  <title>หน้าหลัก - Baan Dee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-bright": "#f7faf7", "on-secondary-container": "#316e52", "primary": "#003e23", "inverse-primary": "#99d4ad", "tertiary-fixed": "#92f7c3", "tertiary-fixed-dim": "#75daa8", "surface": "#f7faf7", "primary-container": "#1e5638", "secondary-fixed": "#b1f0ce", "on-background": "#181c1b", "inverse-on-surface": "#eef1ee", "outline-variant": "#c0c9c0", "surface-container-high": "#e6e9e6", "on-tertiary": "#ffffff", "on-primary-container": "#90caa3", "on-secondary": "#ffffff", "on-primary": "#ffffff", "error": "#ba1a1a", "error-container": "#ffdad6", "on-surface-variant": "#404942", "tertiary-container": "#00583a", "surface-container-highest": "#e0e3e0", "secondary-container": "#aeeecb", "inverse-surface": "#2d3130", "surface-tint": "#326949", "surface-container-lowest": "#ffffff", "surface-dim": "#d8dbd8", "surface-variant": "#e0e3e0", "surface-container": "#ecefec", "on-secondary-fixed-variant": "#0e5138", "secondary": "#2c694e", "tertiary": "#003e28", "surface-container-low": "#f1f4f1", "on-tertiary-fixed": "#002113", "on-tertiary-container": "#6cd09f", "on-secondary-fixed": "#002114", "on-primary-fixed-variant": "#185033", "outline": "#717972", "primary-fixed-dim": "#99d4ad", "secondary-fixed-dim": "#95d4b3", "on-surface": "#181c1b", "on-error-container": "#93000a", "primary-fixed": "#b5f0c8", "background": "#f7faf7", "on-tertiary-fixed-variant": "#005235", "on-error": "#ffffff", "on-primary-fixed": "#002110" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1.25rem", "space-xs": "0.25rem", "space-xl": "1.75rem", "margin": "1.25rem", "space-sm": "0.5rem", "gutter": "1rem", "space-md": "0.875rem" }, fontFamily: { "body-md": ["Plus Jakarta Sans", "Prompt"], "display-lg": ["Plus Jakarta Sans", "Prompt"], "label-md": ["Plus Jakarta Sans", "Prompt"], "headline-md": ["Plus Jakarta Sans", "Prompt"], "display-lg-mobile": ["Plus Jakarta Sans", "Prompt"], "headline-lg": ["Plus Jakarta Sans", "Prompt"], "label-sm": ["Plus Jakarta Sans", "Prompt"], "body-sm": ["Plus Jakarta Sans", "Prompt"], "body-lg": ["Plus Jakarta Sans", "Prompt"], "headline-sm": ["Plus Jakarta Sans", "Prompt"] }, fontSize: { "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "display-lg": ["36px", { "lineHeight": "44px", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "display-lg-mobile": ["30px", { "lineHeight": "38px", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }] } } } };
+  </script>
+  <style>
+    @layer base{html,body{width:100%;margin:0;padding:0;background-color:#f7faf7;color:#181c1b;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}.header-safe{top:env(safe-area-inset-top,0px);}}
+    ::-webkit-scrollbar{display:none;}
+    body { min-height: max(884px, 100dvh); }
+  </style>
+</head>
+<body class="min-h-full bg-surface font-body-md text-body-md text-on-surface antialiased">
+  
+  <!-- Header -->
+  <header class="fixed top-0 inset-x-0 mx-auto max-w-md z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_2px_12px_rgba(30,86,56,0.04)]">
+    <div class="h-16 px-margin flex items-center justify-between">
+      <div class="flex items-center gap-space-sm">
+        <img alt="Baan Dee Logo" class="h-8 w-8 rounded-lg object-contain" src="logo.png" onerror="this.style.display='none'"/>
+        <div class="flex flex-col">
+          <span class="font-headline-sm text-headline-sm text-primary leading-tight font-bold tracking-tight">Baan Dee</span>
+          <span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Home Care</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-space-xs">
+        <button aria-label="Notifications" class="relative w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+          <span class="material-symbols-outlined text-[22px]">notifications</span>
+          <span id="notif-dot" class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span>
+        </button>
+        <button aria-label="Profile" class="w-11 h-11 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity">
+          <div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs">ส</div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative w-full max-w-md mx-auto shadow-2xl pt-16 pb-24 bg-surface min-h-screen">
+    <div class="flex flex-col w-full pb-8">
+      
+      <!-- Top Welcome & Household Switcher -->
+      <section class="px-margin pt-4 pb-2">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mb-0.5">ยินดีต้อนรับ 👋</span>
+            <h1 class="font-headline-md text-headline-md text-on-surface font-bold">คุณสิรภพ <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">(บ้านสุขใจ)</span></h1>
+          </div>
+          <div class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-surface-container-lowest shadow-[0_2px_8px_rgba(30,86,56,0.04)] border border-surface-container-high text-on-surface-variant">
+            <span class="font-label-sm text-label-sm text-primary font-bold">TH</span>
+            <span class="text-outline-variant text-[10px]">|</span>
+            <span class="material-symbols-outlined text-[14px]">swap_horiz</span>
+          </div>
+        </div>
+        
+        <!-- Monthly Summary Bento Card -->
+        <div class="mt-5 bg-primary-container text-on-primary rounded-xl p-space-lg shadow-[0_8px_24px_rgba(30,86,56,0.12)] relative overflow-hidden">
+          <div class="absolute -right-8 -top-8 w-36 h-36 rounded-full bg-tertiary-fixed/15 blur-2xl pointer-events-none"></div>
+          <div class="absolute right-4 bottom-2 text-on-primary-container/20 pointer-events-none select-none">
+            <span class="material-symbols-outlined text-[88px] leading-none" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+          </div>
+          <div class="relative z-10">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-pulse"></span>
+                <span class="font-label-md text-label-md text-on-primary-container font-medium tracking-wide">รายจ่ายรอชำระเดือนนี้</span>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-surface-container-lowest/15 backdrop-blur text-surface-bright font-label-sm text-label-sm flex items-center gap-1">
+                <span class="material-symbols-outlined text-[12px]">schedule</span> ใน 5 วัน
+              </span>
+            </div>
+            <div class="mt-2 flex items-baseline gap-1">
+              <span id="summary-total-int" class="font-display-lg text-display-lg font-bold tracking-tight text-on-primary">฿21,330</span>
+              <span id="summary-total-dec" class="font-body-md text-body-md text-on-primary-container font-medium">.00</span>
+            </div>
+            
+            <!-- Quick Breakdown Badges -->
+            <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-on-primary-container/20">
+              <div class="bg-surface-container-lowest/10 rounded-lg p-2 backdrop-blur-sm border border-surface-container-lowest/5">
+                <div class="font-label-sm text-label-sm text-tertiary-fixed flex items-center gap-1 mb-0.5">
+                  <span class="material-symbols-outlined text-[12px]">apartment</span> ส่วนกลาง
+                </div>
+                <div class="font-body-md text-body-md text-on-primary font-bold">฿3,200</div>
+              </div>
+              <div class="bg-surface-container-lowest/10 rounded-lg p-2 backdrop-blur-sm border border-surface-container-lowest/5">
+                <div class="font-label-sm text-label-sm text-tertiary-fixed flex items-center gap-1 mb-0.5">
+                  <span class="material-symbols-outlined text-[12px]">roofing</span> งวดบ้าน
+                </div>
+                <div class="font-body-md text-body-md text-on-primary font-bold">฿16,894</div>
+              </div>
+              <div class="bg-surface-container-lowest/10 rounded-lg p-2 backdrop-blur-sm border border-surface-container-lowest/5">
+                <div class="font-label-sm text-label-sm text-tertiary-fixed flex items-center gap-1 mb-0.5">
+                  <span class="material-symbols-outlined text-[12px]">bolt</span> ค่าไฟ
+                </div>
+                <div id="summary-elec-badge" class="font-body-md text-body-md text-on-primary font-bold">฿1,236</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Urgent Action Alerts -->
+      <section class="mt-4 px-margin">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-error-container/40 flex items-center justify-center text-error">
+              <span class="material-symbols-outlined text-[18px]">warning</span>
+            </div>
+            <div>
+              <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold leading-tight">สิ่งที่ต้องทำด่วน</h2>
+            </div>
+          </div>
+          <span id="urgent-count" class="font-label-sm text-label-sm text-on-surface-variant font-medium">2 รายการค้าง</span>
+        </div>
+        
+        <div class="flex flex-col gap-3">
+          <!-- Urgent Item 1: Meter -->
+          <div id="urgent-meter-card" class="bg-surface-container-lowest rounded-xl p-3.5 shadow-[0_2px_8px_rgba(30,86,56,0.04)] border border-surface-container-high flex items-center justify-between">
+            <div class="flex items-center gap-3 min-w-0">
+              <div id="urgent-meter-icon" class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">electric_meter</span>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span id="urgent-meter-title" class="font-body-md text-body-md text-on-surface font-bold truncate">ยังไม่ได้จดมิเตอร์ค่าไฟ</span>
+                <span id="urgent-meter-sub" class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">รอบเดือนนี้ส่งตัวเลขก่อน 28 พ.ย.</span>
+              </div>
+            </div>
+            <a href="meter.html" id="urgent-meter-btn" class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm font-semibold shadow-sm hover:bg-primary-container transition-colors shrink-0">
+              จดมิเตอร์
+            </a>
+          </div>
+          
+          <!-- Urgent Item 2: Vehicle -->
+          <div class="bg-surface-container-lowest rounded-xl p-3.5 shadow-[0_2px_8px_rgba(30,86,56,0.04)] border border-surface-container-high flex items-center justify-between">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-body-md text-body-md text-on-surface font-bold truncate">ต่อภาษีรถยนต์</span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">หมดอายุในอีก 14 วัน • ออนไลน์ได้</span>
+              </div>
+            </div>
+            <a href="vehicle.html" class="px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface font-label-sm text-label-sm font-semibold hover:bg-surface-container transition-colors shrink-0 border border-surface-container-high">
+              จัดการ
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation Hub Grid -->
+      <section class="mt-6 px-margin">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined text-[18px]">grid_view</span>
+            </div>
+            <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold leading-tight">หมวดหมู่หลัก</h2>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3">
+          <!-- Module 1: Home -->
+          <a href="manage-home.html" class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_2px_8px_rgba(30,86,56,0.04)] border border-surface-container hover:border-primary/30 transition-all flex flex-col justify-between h-32 relative overflow-hidden group">
+            <div class="flex items-start justify-between relative z-10">
+              <div class="w-10 h-10 rounded-xl bg-secondary-fixed/50 text-on-secondary-fixed-variant flex items-center justify-center group-hover:bg-secondary-fixed transition-colors">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">roofing</span>
+              </div>
+              <span class="w-2 h-2 rounded-full bg-error"></span>
+            </div>
+            <div class="relative z-10">
+              <div class="font-body-md text-body-md text-on-surface font-bold">จัดการบ้าน</div>
+              <div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">3 งานค้าง • ซ่อมบำรุง</div>
+              <div class="font-label-sm text-label-sm text-primary font-semibold mt-1.5 flex items-center justify-between">
+                <span id="card-elec-text">บิลไฟ ฿1,236</span>
+                <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+              </div>
+            </div>
+          </a>
+          
+          <!-- Module 2: Car -->
+          <a href="vehicle.html" class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_2px_8px_rgba(30,86,56,0.04)] border border-surface-container hover:border-primary/30 transition-all flex flex-col justify-between h-32 relative overflow-hidden group">
+            <div class="flex items-start justify-between relative z-10">
+              <div class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface-variant flex items-center justify-center group-hover:bg-secondary-fixed group-hover:text-on-secondary-fixed transition-colors">
+                <span class="material-symbols-outlined text-[20px]">directions_car</span>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm font-semibold">2 คัน</span>
+            </div>
+            <div class="relative z-10">
+              <div class="font-body-md text-body-md text-on-surface font-bold">จัดการรถ</div>
+              <div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">เช็กระยะน้ำมันเครื่อง</div>
+              <div class="font-label-sm text-label-sm text-primary font-semibold mt-1.5 flex items-center justify-between">
+                <span>มีนัดใน 3 วัน</span>
+                <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+              </div>
+            </div>
+          </a>
+          
+          <!-- Module 3: Stock -->
+          <a href="items.html" class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_2px_8px_rgba(30,86,56,0.04)] border border-surface-container hover:border-primary/30 transition-all flex flex-col justify-between h-32 relative overflow-hidden group">
+            <div class="flex items-start justify-between relative z-10">
+              <div class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface-variant flex items-center justify-center group-hover:bg-secondary-fixed group-hover:text-on-secondary-fixed transition-colors">
+                <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-error-container/50 text-error font-label-sm text-label-sm font-semibold">2 ใกล้หมด</span>
+            </div>
+            <div class="relative z-10">
+              <div class="font-body-md text-body-md text-on-surface font-bold">สต็อกของใช้</div>
+              <div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">น้ำดื่ม, กรองอากาศ</div>
+              <div class="font-label-sm text-label-sm text-primary font-semibold mt-1.5 flex items-center justify-between">
+                <span>เช็กสต็อก</span>
+                <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+              </div>
+            </div>
+          </a>
+          
+          <!-- Module 4: Summary -->
+          <a href="manage-home.html" class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_2px_8px_rgba(30,86,56,0.04)] border border-surface-container hover:border-primary/30 transition-all flex flex-col justify-between h-32 relative overflow-hidden group">
+            <div class="flex items-start justify-between relative z-10">
+              <div class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface-variant flex items-center justify-center group-hover:bg-secondary-fixed group-hover:text-on-secondary-fixed transition-colors">
+                <span class="material-symbols-outlined text-[20px]">account_balance</span>
+              </div>
+              <span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim">trending_down</span>
+            </div>
+            <div class="relative z-10">
+              <div class="font-body-md text-body-md text-on-surface font-bold">สรุปรายจ่าย</div>
+              <div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">วิเคราะห์งบประจำเดือน</div>
+              <div class="font-label-sm text-label-sm text-primary font-semibold mt-1.5 flex items-center justify-between">
+                <span>ดูสถิติ</span>
+                <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="fixed bottom-0 inset-x-0 mx-auto max-w-md z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(30,86,56,0.06)]">
+    <div class="flex justify-around items-center h-16 px-space-xs">
+      <a aria-current="page" href="index.html" class="flex flex-col items-center justify-center gap-1 min-w-[64px] h-12 transition-all text-primary-container font-semibold">
+        <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">home</span>
+        <span class="font-label-sm text-label-sm">หน้าหลัก</span>
+      </a>
+      <a href="manage-home.html" class="flex flex-col items-center justify-center gap-1 min-w-[64px] h-12 text-on-surface-variant hover:text-primary-container transition-all">
+        <span class="material-symbols-outlined text-[24px]">roofing</span>
+        <span class="font-label-sm text-label-sm">จัดการบ้าน</span>
+      </a>
+      <a href="vehicle.html" class="flex flex-col items-center justify-center gap-1 min-w-[64px] h-12 text-on-surface-variant hover:text-primary-container transition-all">
+        <span class="material-symbols-outlined text-[24px]">directions_car</span>
+        <span class="font-label-sm text-label-sm">ยานพาหนะ</span>
+      </a>
+      <a href="items.html" class="flex flex-col items-center justify-center gap-1 min-w-[64px] h-12 text-on-surface-variant hover:text-primary-container transition-all">
+        <span class="material-symbols-outlined text-[24px]">inventory_2</span>
+        <span class="font-label-sm text-label-sm">ของใช้ในบ้าน</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Script ซิงก์ข้อมูลล่าสุดจาก localStorage -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const latestMeter = localStorage.getItem('latestMeterData');
+      const latestDate = localStorage.getItem('latestMeterDate');
+      const latestBill = parseFloat(localStorage.getItem('latestBillAmount'));
+
+      // 1. ถ้าเคยบันทึกมิเตอร์แล้ว ให้เปลี่ยนสถานะรายการด่วนเป็น "บันทึกแล้ว"
+      if (latestMeter) {
+        const titleEl = document.getElementById('urgent-meter-title');
+        const subEl = document.getElementById('urgent-meter-sub');
+        const iconEl = document.getElementById('urgent-meter-icon');
+        const btnEl = document.getElementById('urgent-meter-btn');
+        const countEl = document.getElementById('urgent-count');
+
+        if (titleEl) titleEl.innerText = `จดมิเตอร์แล้ว (${Number(latestMeter).toLocaleString()} kWh)`;
+        if (subEl) subEl.innerText = latestDate ? `อัปเดตล่าสุดเมื่อ ${latestDate}` : 'บันทึกข้อมูลเรียบร้อยแล้ว';
+        if (iconEl) {
+          iconEl.className = 'w-10 h-10 rounded-xl bg-secondary-fixed/60 text-primary flex items-center justify-center shrink-0';
+          iconEl.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span>';
+        }
+        if (btnEl) {
+          btnEl.innerText = 'แก้ไข';
+          btnEl.className = 'px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface font-label-sm text-label-sm font-semibold hover:bg-surface-container transition-colors shrink-0 border border-surface-container-high';
+        }
+        if (countEl) countEl.innerText = '1 รายการค้าง';
+      }
+
+      // 2. ถ้ามียอดค่าไฟล่าสุด ให้อัปเดตการ์ดสรุปรายจ่ายรวมอัตโนมัติ
+      if (!isNaN(latestBill) && latestBill > 0) {
+        const commonFee = 3200;
+        const mortgage = 16894;
+        const total = commonFee + mortgage + latestBill;
+
+        const [intPart, decPart] = total.toFixed(2).split('.');
+        const formattedInt = Number(intPart).toLocaleString('en-US');
+        const formattedBill = latestBill.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+
+        if (document.getElementById('summary-total-int')) document.getElementById('summary-total-int').innerText = `฿${formattedInt}`;
+        if (document.getElementById('summary-total-dec')) document.getElementById('summary-total-dec').innerText = `.${decPart}`;
+        if (document.getElementById('summary-elec-badge')) document.getElementById('summary-elec-badge').innerText = `฿${formattedBill}`;
+        if (document.getElementById('card-elec-text')) document.getElementById('card-elec-text').innerText = `บิลไฟ ฿${formattedBill}`;
+      }
+    });
+  </script>
+</body>
+</html>
